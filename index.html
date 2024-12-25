@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="css/semantic.ui/semantic.css">
+  <script src="js/script.js"></script>
+  <title> rabbit_noir</title>
+</head>
+<body>
+  <header>
+	<nav id="navbar">
+	  <div class="container">
+	    <img src="img/rb/rabbit_noir.jpg">
+	    <div class="ui icon input" style="margin:30px 20px"> 
+	     <input type="text" placeholder="Qidirish..." id="ser">
+	     <i class="search icon"></i>
+	     </div>
+	   <ul>
+	     <li><a href="#" class="current">Tabiy fan </a></li>
+	     <li><a onclick="checkPassword()">Matematika </a></li>
+	   </ul>
+	  </div>
+	</nav>
+	</header>
+	<h2 class="fff">salom</h2>
+	<div id="gallery" class="container"></div>
+<div id="largeImageModal" class="large-image-modal">
+        <span class="close-button">&times;</span>
+        <img id="largeImage" src="" alt="Kattalashtirilgan Rasm">
+        <div class="navigation-buttons">
+            <button class="nav-button" id="prevButton">&lt;</button>
+            <button class="nav-button" id="nextButton">&gt;</button>
+        </div>
+    </div>
+<script>
+        let images = []; // Barcha rasm ma'lumotlarini saqlash
+        let currentImageIndex = null;
+
+        function renderImages(containerId, imageCount, folderPath, imagePrefix, imageExtension, imagesPerRow) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Hamma rasmlarni tozalash
+
+            for (let i = 1; i <= imageCount; i++) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper';
+                wrapper.dataset.index = i; // Rasmni indeksini saqlash
+
+                const img = document.createElement('img');
+                img.src = `${folderPath}/${imagePrefix}${i}.${imageExtension}`;
+                img.alt = `Rasm ${i}`;
+
+                const row = Math.floor((i - 1) / imagesPerRow) + 1;
+                const col = (i - 1) % imagesPerRow + 1;
+                const imageText = document.createElement('div');
+                imageText.className = 'image-text';
+                imageText.textContent = `${row},${col}`;
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(imageText);
+                container.appendChild(wrapper);
+
+                images.push({ index: i, src: img.src, row, col });
+            }
+        }
+
+        // Izlash funksiyasi
+        function searchImages(query) {
+            const allImages = document.querySelectorAll('.image-wrapper');
+            let foundCount = 0;
+
+            allImages.forEach(imageWrapper => {
+                const imageText = imageWrapper.querySelector('.image-text').textContent;
+                if (imageText.includes(query)) {
+                    imageWrapper.style.display = 'block'; // Topilgan rasmni ko'rsatish
+                    foundCount++;
+                } else {
+                    imageWrapper.style.display = 'none'; // Topilmagan rasmni yashirish
+                }
+            });
+
+            // Topilgan rasmlar sonini ko'rsatish
+            alert(`Topilgan ${foundCount} ta rasm`);
+        }
+
+        // Rasmni kattalashtirish
+        function openLargeImage(index) {
+            const image = images.find(img => img.index === index);
+            if (image) {
+                document.getElementById('largeImage').src = image.src;
+                currentImageIndex = index;
+                document.getElementById('largeImageModal').style.display = 'block';
+            }
+        }
+
+        // Kattalashtirilgan rasmni yopish
+        document.querySelector('.close-button').addEventListener('click', () => {
+            document.getElementById('largeImageModal').style.display = 'none';
+        });
+
+        // Rasmni keyingi va oldingi rasmga o'tkazish
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentImageIndex > 1) {
+                openLargeImage(currentImageIndex - 1);
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if (currentImageIndex < images.length) {
+                openLargeImage(currentImageIndex + 1);
+            }
+        });
+
+        // Rasm ustiga bosganda kattalashtirish
+        document.getElementById('gallery').addEventListener('click', function (event) {
+            if (event.target && event.target.tagName === 'IMG') {
+                const wrapper = event.target.closest('.image-wrapper');
+                const index = wrapper.dataset.index;
+                openLargeImage(parseInt(index));
+            }
+        });
+
+        // Izlashni faollashtirish
+        document.getElementById('ser').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const query = this.value.trim();
+                searchImages(query); // Izlashni boshlash
+            }
+        });
+
+        // Rasmlar sozlamalari
+        const totalImages = 56;
+        const folderPath = 'img/ssd';
+        const imagePrefix = 'm';
+        const imageExtension = 'jpg';
+        const imagesPerRow = 10;
+
+        // Rasmlarni yuklash
+        renderImages('gallery', totalImages, folderPath, imagePrefix, imageExtension, imagesPerRow);
+    </script>
+</body>
+</html>

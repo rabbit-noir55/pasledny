@@ -1,0 +1,180 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* main styling */
+html,
+body {
+  font-family: sans-serif;
+}
+
+a {
+  color: #02b8fd;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  padding-bottom: 20px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+#navbar {
+  background-color: #02b8fd;
+  overflow: auto;
+}
+
+#navbar a {
+  color: blue;
+}
+.fff{
+  opacity: 0;;
+}
+#navbar img {
+  float: left;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  
+}
+
+#navbar ul {
+  float: right;
+  list-style: none;
+}
+
+#navbar ul li {
+  float: left;
+}
+
+#navbar ul li a {
+  display: inline-block;
+  padding: 20px;
+  margin: 20px 6px;
+  border-radius: 5px;
+  background-color: gold;
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.current {
+  background-color: blue;
+  color:gold;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+ .image-wrapper {
+            background-color: blue;
+            border-radius: 5px;
+            padding: 10px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .image-wrapper img {
+            max-width: 300px;
+            border-radius: 5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .image-text {
+            font-size: 14px;
+            color: white;
+        }
+
+        #search {
+            padding: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        /* Kattalashtirilgan rasm uslubi */
+        .large-image-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: none;
+            text-align: center;
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            max-height: 800px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .large-image-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 5px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .navigation-buttons {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+            color: white;
+        }
+        
+  /* About us page */
+#about-info {
+  padding: 20px 0;
+  display: inline-block;
+  width: 100%;
+}
+
+#about-info .info-left {
+  float: right;
+  width: 50%;
+  min-height: 100%;
+}
+
+#about-info .info-left img {
+  display: block;
+  margin: auto;
+  width: 70%;
+  border-radius: 50%;
+}
+
+#about-info .info-right {
+  float: left;
+  width: 50%;
+  min-height: 100%;
+}
