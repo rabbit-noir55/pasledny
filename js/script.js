@@ -1,5 +1,5 @@
 function checkPassword() {
-    const correctPassword = "THE UNIVERSE GROUP"; // To'g'ri parol
+    const correctPassword = "MIRACULOUS"; // To'g'ri parol
     const userPassword = prompt("Parolni kiriting:");
 
     if (userPassword === correctPassword) {
